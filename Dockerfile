@@ -44,6 +44,9 @@ RUN \
   mv ${INSTALL_DIR}/config/patriot.ini ${INSTALL_DIR}/config/patriot-mysql.ini  &&\
   mv ${INSTALL_DIR}/config/patriot-sqlite.ini ${INSTALL_DIR}/config/patriot.ini 
   
+RUN \
+  sed -i -e 's/jobstore\.root\.database=.*/jobstore.root.database=\/usr\/local\/patriot\/patriot.sqlite/' ${INSTALL_DIR}/config/patriot.ini
+
 # test execute
 RUN \
   cd ${INSTALL_DIR} &&\
@@ -51,13 +54,11 @@ RUN \
   cat /tmp/test.out
 
 # test register
-RUN \
-  cd ${INSTALL_DIR} &&\
-  ./bin/patriot register 2015-04-01 batch/sample/daily/test.pbc
-RUN \
-  sqlite3 ${INSTALL_DIR}/patriot.sqlite "select * from jobs"
+# RUN \
+#   cd ${INSTALL_DIR} &&\
+#   ./bin/patriot register 2015-04-01 batch/sample/daily/test.pbc
+# RUN \
+#   sqlite3 ${INSTALL_DIR}/patriot.sqlite "select * from jobs"
 
-CMD \
-  cd ${INSTALL_DIR} &&\
-  # ./bin/patriot worker start
-  ./bin/patriot worker --foreground start
+VOLUME ["/usr/local/patriot"]
+ENTRYPOINT ["/usr/local/patriot/bin/patriot"]
