@@ -19,7 +19,7 @@ $ docker run --rm --volumes-from patriot-server patriot register 2015-09-01 /usr
 ### check logs
 
 ```
-docker logs patriot-server
+docker logs -f patriot-server
 ```
 
 ### connect to container and check if test.pbc worked correctly
