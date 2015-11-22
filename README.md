@@ -7,7 +7,7 @@ $ docker build -t patriot .
 ### start patriot-workflow-scheduler
 
 ```
-$ docker run -d --name patriot-server patriot worker --foreground start
+$ docker run -d --name patriot-server --publish 36104:36104 patriot worker --foreground start
 ```
 
 ### register jobs
