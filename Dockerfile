@@ -5,7 +5,7 @@ MAINTAINER Takayuki Tanaka <takat007@gmail.com>
 
 ENV INSTALL_DIR /usr/local/patriot
 ENV TOOL_DIR /usr/local/patriot-workflow-scheduler
-ENV VERSION 0.7.2
+ENV VERSION 0.8.0.alpha
 ENV TERM xterm
 
 # install prerequisites
