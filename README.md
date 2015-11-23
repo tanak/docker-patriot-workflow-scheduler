@@ -91,11 +91,17 @@ host$ cat /tmp/test2b.out
 Mon Nov 23 05:38:26 UTC 2015
 ```
 
-# stop and remove containers
+## stop and remove containers
 
 ```
 $ docker-compose stop 
-$ docker-compose rm
+$ docker-compose rm patriot-worker
+```
+
+or if you don't need jobs history, you can remove mysql container too.
+
+```
+$ docker-compose rm mysql4patriot
 ```
 
 ### Sqlite version
