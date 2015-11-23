@@ -1,3 +1,5 @@
+This is a project to help users to try [patriot-workflow-scheduler](https://github.com/CyberAgent/patriot-workflow-scheduler) easily.
+
 ## setup
 
 ```
@@ -80,7 +82,7 @@ job_group {
 $ docker-compose run --rm patriot-client register 2015-09-03 /patriot-batches/test2.pbc
 ```
 
-## check if the job processed
+## check if the job registered above is successfully processed
 
 ```
 $ docker exec -it patriot-worker bash
@@ -97,7 +99,7 @@ $ docker-compose stop
 $ docker-compose rm
 ```
 
-###
+### Sqlite version
 
 check patriot-sqlite3 for patriot-workflow-scheduler with sqlite3 connector
 
