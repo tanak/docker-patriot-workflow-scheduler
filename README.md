@@ -63,24 +63,26 @@ host$ vi /tmp/test2.pbc
 
 ```
 job_group {
-  produce ['sleep30']
+  produce ['sleep10']
 
   sh {
-    name 'output_date_and_sleep_30'
+    name 'output_date_and_sleep_10'
     commands <<-EOS
-      date > /patriot-batches/test2a.out
-      sleep 30
+      hostname > /patriot-batches/test2a.out
+      date >> /patriot-batches/test2a.out
+      sleep 10
     EOS
   }
 }
 
 job_group {
-  require ['sleep30']
+  require ['sleep10']
 
   sh {
     name 'output_date_after_require_job_finished'
     commands <<-EOS
-      date > /patriot-batches/test2b.out
+      hostname > /patriot-batches/test2b.out
+      date >> /patriot-batches/test2b.out
     EOS
   }
 }
