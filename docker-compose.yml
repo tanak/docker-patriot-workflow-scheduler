@@ -18,7 +18,7 @@ patriot-worker:
   links:
     - mysql4patriot:mysql4patriot
   ports:
-    - "36104:36104"
+    - "36104"
   volumes:
     - /tmp:/patriot-batches
   command: worker --foreground start

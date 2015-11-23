@@ -10,7 +10,8 @@ $ docker-compose build
 ## start mysql
 
 ```
-$ docker-compose up -d mysql4patriot $ docker-compose logs mysql4patriot
+$ docker-compose up -d mysql4patriot
+$ docker-compose logs mysql4patriot
 ```
 
 Wait for mysql server to start. After several seconds, you can see logs like:  
@@ -29,7 +30,15 @@ $ docker-compose logs patriot-worker
 
 ## check status on Web UI
 
-http://localhost:36104/jobs
+#### check port of Web UI
+
+```
+$ docker ps
+... 0.0.0.0:32783->36104/tcp ...
+```
+
+open  
+http://localhost:32783/jobs
 
 ## register a job
 
@@ -39,14 +48,14 @@ $ docker-compose run --rm patriot-client register 2015-09-03 /usr/local/patriot/
 
 ## check if the job registered above is successfully processed
 
-open "Succeeded" on Web UI
-or open http://localhost:36104/jobs/?state=0
+open "Succeeded" on Web UI  
+or open http://localhost:32783/jobs/?state=0
 
 ## create your own jobs
 
-/tmp on host is mounted on docker patriot-client:/patriot-batches
-so you can create job files on host and try them on docker.
-Now you create jobs with dependencies.
+/tmp on host is mounted on docker patriot-client:/patriot-batches  
+so you can create job files on host and try them on docker.  
+Now you create jobs with dependencies.  
 
 ```
 host$ vi /tmp/test2.pbc
