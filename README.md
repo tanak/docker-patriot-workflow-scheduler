@@ -19,7 +19,7 @@ Wait for mysql server to start. After several seconds, you can see logs like:
 mysql4patriot | Version: '5.7.9'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)
 ```
 
-Now you are ready to start worker.
+Now you are ready to start worker. Ctrl-C to exit logs output.
 
 ## start worker
 
@@ -41,6 +41,8 @@ open
 http://localhost:32783/jobs
 
 ## register a job
+
+on another terminal to see logs.
 
 ```
 $ docker-compose run --rm patriot-client register 2015-09-03 /usr/local/patriot/batch/sample/daily/test.pbc
@@ -97,8 +99,15 @@ $ docker-compose run --rm patriot-client register 2015-09-03 /patriot-batches/te
 
 ```
 host$ cat /tmp/test2a.out
+f23cd8db21c0
 Mon Nov 23 05:37:55 UTC 2015
+```
+
+10 seconds later
+
+```
 host$ cat /tmp/test2b.out
+f23cd8db21c0
 Mon Nov 23 05:38:26 UTC 2015
 ```
 
@@ -113,6 +122,26 @@ or if you don't need jobs history, you can remove mysql container too.
 
 ```
 $ docker-compose rm mysql4patriot
+```
+
+## working on multiple workers
+
+```
+$ docker-compose up -d mysql4patriot
+$ docker-compose scale patriot-worker=3
+$ docker-compose logs
+```
+on another terminal to see logs
+
+```
+$ docker-compose run --rm patriot-client register 2015-09-03 /patriot-batches/test2.pbc
+$ cat /tmp/test2a.out
+```
+
+10 seconds later
+
+```
+$ cat /tmp/test2b.out
 ```
 
 ### Sqlite version
