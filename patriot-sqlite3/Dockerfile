@@ -55,12 +55,5 @@ RUN \
   ./bin/patriot execute 2015-04-01 batch/sample/daily/test.pbc &&\
   cat /tmp/test.out
 
-# test register
-# RUN \
-#   cd ${INSTALL_DIR} &&\
-#   ./bin/patriot register 2015-04-01 batch/sample/daily/test.pbc
-# RUN \
-#   sqlite3 ${INSTALL_DIR}/patriot.sqlite "select * from jobs"
-
 VOLUME ["/usr/local/patriot"]
 ENTRYPOINT ["/usr/local/patriot/bin/patriot"]

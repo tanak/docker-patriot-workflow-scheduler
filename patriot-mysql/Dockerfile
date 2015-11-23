@@ -40,10 +40,7 @@ RUN \
 RUN ${INSTALL_DIR}/bin/patriot plugin install patriot-mysql2-client
 
 RUN \
-  # cp ${TOOL_DIR}/spec/config/mysql2.ini ${INSTALL_DIR}/config/patriot.ini &&\
-  # sed -i -e 's/jobstore\.root\.host=.*/jobstore.root.host=patriot-mysql/' ${INSTALL_DIR}/config/patriot.ini &&\
   sed -i -e 's/jobstore\.root\.class=.*/plugins=patriot-mysql2-client\njobstore.root.class=Patriot::JobStore::RDBJobStore\njobstore.root.adapter=mysql2\njobstore.root.database=test_patriot_rdb_job_store\njobstore.root.host=mysql4patriot\njobstore.root.username=test\njobstore.root.password=test\n/' ${INSTALL_DIR}/config/patriot.ini
-  # mysql  < ${TOOL_DIR}/misc/mysql.sql &&\
 
 # Remove unnecessary packages
 RUN apt-get purge -y build-essential
