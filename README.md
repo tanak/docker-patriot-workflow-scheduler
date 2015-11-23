@@ -59,7 +59,7 @@ job_group {
   sh {
     name 'output_date_and_sleep_30'
     commands <<-EOS
-      date > /tmp/test2a.out
+      date > /patriot-batches/test2a.out
       sleep 30
     EOS
   }
@@ -71,7 +71,7 @@ job_group {
   sh {
     name 'output_date_after_require_job_finished'
     commands <<-EOS
-      date > /tmp/test2b.out
+      date > /patriot-batches/test2b.out
     EOS
   }
 }
@@ -85,10 +85,9 @@ $ docker-compose run --rm patriot-client register 2015-09-03 /patriot-batches/te
 ## check if the job registered above is successfully processed
 
 ```
-$ docker exec -it patriot-worker bash
-docker# cat /tmp/test2a.out
+host$ cat /tmp/test2a.out
 Mon Nov 23 05:37:55 UTC 2015
-docker# cat /tmp/test2b.out
+host$ cat /tmp/test2b.out
 Mon Nov 23 05:38:26 UTC 2015
 ```
 

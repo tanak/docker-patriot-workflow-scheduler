@@ -15,11 +15,12 @@ mysql4patriot:
 # patriot-worker
 patriot-worker:
   build: patriot-mysql
-  container_name: patriot-worker
   links:
     - mysql4patriot:mysql4patriot
   ports:
     - "36104:36104"
+  volumes:
+    - /tmp:/patriot-batches
   command: worker --foreground start
 # patriot-client
 patriot-client:
