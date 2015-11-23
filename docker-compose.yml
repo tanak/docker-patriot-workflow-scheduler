@@ -1,0 +1,30 @@
+# mysql
+mysql4patriot:
+  image: mysql
+  container_name: mysql4patriot
+  volumes:
+    - ./patriot-mysql/config:/tmp/patriot-config
+    - ./patriot-mysql/db:/docker-entrypoint-initdb.d
+  expose:
+   - "3306"
+  environment:
+    MYSQL_DATABASE: test_patriot_rdb_job_store
+    MYSQL_ROOT_PASSWORD: password
+    MYSQL_USER: test
+    MYSQL_PASSWORD: test
+# patriot-worker
+patriot-worker:
+  build: patriot-mysql
+  container_name: patriot-worker
+  links:
+    - mysql4patriot:mysql4patriot
+  ports:
+    - "36104:36104"
+  command: worker --foreground start
+# patriot-client
+patriot-client:
+  build: patriot-mysql
+  links:
+    - mysql4patriot:mysql4patriot
+  volumes:
+    - /tmp:/patriot-batches
